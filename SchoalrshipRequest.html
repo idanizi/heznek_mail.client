@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html ng-app="ScholarshipRequestApp">
+<head>
+    <title>
+        טופס הגשת בקשה למלגה &quot;הזנק לעתיד&quot;
+    </title>
+    <meta charset="utf-8" />
+
+    <!--THIS WEBPAGE IS DESIGN & CODED BY IDAN IZICOVICH FOR HEZNEK LA'ATID COMPANY. ALL RIGHTS RESERVED-->
+    <!--AUTHOR: IDAN IZICOVICH, idanizi@gmail.com-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!--AngularJS CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+    <!--jQuery CDN-->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <!--DatePicker CSS and JS sources-->
+    <!--<script src="http://momentjs.com/downloads/moment.js"></script>-->
+    <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/he/0.5.0/he.js"></script>
+
+
+    <!--<script src="../../../assets/js/angular.js"></script>-->
+    <!--<script src="../../../assets/js/angular-route.js"></script>-->
+    <!--<script src="../../../assets/js/jquery-1.11.3.js"></script>-->
+    <!--<script src="../../app.js"></script>-->
+
+    <script src="SchoalrshipRequestController.js"></script>
+    <!--NG-TABLE CDN-->
+    <!--<link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/v1.0.0/dist/ng-table.min.css">-->
+    <!--<script src="https://cdn.rawgit.com/esvit/ng-table/v1.0.0/dist/ng-table.js"></script>-->
+</head>
+<body>
+
+    <!--<div ng-view></div>-->
+
+    <div class="container text-center" dir="auto" ng-controller="ScholarshipRequestController">
+        <div class="panel panel-primary" style="max-width:750px; display:block; margin:auto;">
+            <div class="panel-heading">
+                <h3 class="panel-title">טופס בקשת מלגה</h3>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="http://idanizi.somee.com/">
+                    <div class="input-group">
+                        <input name="firstName" type="text" class="form-control" placeholder="שם פרטי" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="lastName" type="text" class="form-control" placeholder="שם משפחה" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+
+                        <input name="sex" id="sex" type="radio" class="form-control" value="male" aria-describedby="basic-addon1"> זכר
+                        <br />
+                        <input name="sex" id="sex" type="radio" class="form-control" value="female" aria-describedby="basic-addon1"> נקבה
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        תאריך הגשת הטופס: {{dateNow}}
+                        <input name="date" type="hidden" class="form-control" value="{{dateNow}}" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="id" type="text" class="form-control" placeholder="תעודת זהות" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+
+                    <div class='input-group date'>
+                        <input name="birthday" type='text' class="form-control" placeholder="תאריך לידה" id='datetimepicker1' />
+                    </div>
+
+                    <script type="text/javascript">
+                        $(function () {
+                            $(function () {
+                                $('#datetimepicker1').datetimepicker({
+                                    locale: 'he'
+                                });
+                            });
+                        });
+                    </script>
+                    <!--<input id="birthdate" type="date" class="form-control" placeholder="תאריך לידה" aria-describedby="basic-addon1" alt="תאריך לידה">-->
+                    <br />
+
+                    <div class="input-group">
+                        <input name="nSiblings" type="number" class="form-control" placeholder="מספר אחים" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="cell" type="number" class="form-control" placeholder="פלאפון" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="email" type="email" class="form-control" placeholder="דואר אלקטרוני - אימייל תקין" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="parentsLocation" type="text" class="form-control" placeholder="יישוב הורים" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="myLocation" type="text" class="form-control" placeholder="מיקום מגורים בזמן הלימודים" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="fatherOrigin" type="text" class="form-control" placeholder="ארץ מוצא אב" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="motherOrigin" type="text" class="form-control" placeholder="ארץ מוצא אם" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="highSchoolName" type="text" class="form-control" placeholder="שם בית ספר תיכון" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="formerPrograms" type="text" class="form-control" placeholder="תוכניות בהן השתתפתי" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="currentInstitution" type="text" class="form-control" placeholder="מוסד אקדמי נוכחי" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="currentYear" type="number" class="form-control" placeholder="שנה אקדמית נוכחית" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="major" type="text" class="form-control" placeholder="תחום לימוד ראשי" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="secondary" type="text" class="form-control" placeholder="תחום לימוד משני (במידה ויש)" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <input name="disabilities" type="checkbox" class="form-control" placeholder="" aria-describedby="basic-addon1" />האם קיימים אבחונים ללקויות למידה ואו קשב וריכוז  (כולל מתקופת התיכון)? אם כן סמנ/י V
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <textarea name="activity" maxlength="1000" cols="200" class="form-control" placeholder="ציינ/י בקצרה על השתתפות בפעילות הזנק בתיכון (האם השתתפת בפעילות מיוחדת במסגרת התוכנית לדוגמה פגישות עם תורמים/ הרצאות/ הובלת פרוייקטים וכו')" aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <textarea name="reason" maxlength="1000" cols="200" class="form-control" placeholder="סיבת בקשת המלגה" aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <textarea name="service" maxlength="1000" cols="200" class="form-control" placeholder="נא לפרט  לגבי השירות הצבאי/לאומי (משך, תפקיד, חיל, קבע במידה ורלוונטי, האם קיבלת במסגרת הצבא תנאי שירות מיוחדים – ת&quot;ש, תשמ&quot;ש וכו'" aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <textarea name="relationshipStatus" maxlength="1000" cols="200" rows="5" class="form-control" placeholder="נא לפרט  מצב אישי ומשפחתי (כולל עיסוק הורים ואחים – נא לציין האם ההורים והאחים אקדמיים) " aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <textarea name="socio-economic" maxlength="1000" cols="200" rows="10" class="form-control" placeholder="נא לפרט מצב סוציו-אקונומי, בעיות (כלכליות, משפחתיות, בריאותיות וכדומה בהווה או בעבר , במידה ואחד מההורים מקבל מקור הכנסה נוסף נא לציין זאת  כדוגמת - קצבה מבטוח לאומי,פנסיה מעבודה קודמת וכו')" aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <textarea maxlength="1000" cols="200" rows="10" name="lifeStory" class="form-control" placeholder="סיפור חיים בקווים כלליים: מקומות התנדבות  (במידה והיו), מקומות עבודה מיוחדים, אירועים חשובים" aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <textarea maxlength="1000" cols="200" rows="3" name="hobby" type="text" class="form-control" placeholder="במידה וישנו תחום אישי ,עניין מיוחד או תחום שהמועמד/ת מתעסק/ת בו וטוב בו ( כדוגמת שירה ריקוד ספורט אומנות וכדומה )  מומלץ לציינו" aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <textarea maxlength="1000" cols="200" rows="2" name="otherScolarships" class="form-control" placeholder="במידה והמועמד/ת הגיש בקשות אחרות למלגות ואו מקבלים מלגה ממקור אחר (מעל 5000 ש&quot;ח) יש לציין זאת" aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        <textarea maxlength="1000" cols="200" rows="10" name="comments" class="form-control" placeholder="הערות(דברים נוספים שחשוב לך לציין)" aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        תעודת בגרות או תעודה המעידה על סיום לימודי התיכון בבית הספר שבו התקיימה התכנית
+                        <input type="file" name="bagrutFile" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        תמונה עדכנית
+                        <input type="file" name="pasportPicture" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                        צילום ת.ז.
+                        <input type="file" name="idPicture" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        שלושה תלושי שכר אחרונים של ההורים (יש לוודא שלמות הטפסים בעת הסריקה).
+                        <input type="file" name="salery" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        תעודת שחרור מצה"ל או שירות לאומי (תעודת הערכה, בעלת פירוט של אופי השירות)
+                        <input type="file" name="serviceFreePic" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        ללומדים בפועל - אישור לימודים עדכני ( אין צורך לשלוח עם הבקשה ניתן לצרף את האישור בשלב מאוחר יותר)
+                        <input type="file" name="schoolApproval" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        במידה ויש המלצות, יש לצרפן
+                        <input type="file" name="recommand" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+
+                    <div class="input-group container" style="position:center;">
+                        <button type="submit" class="btn-default;">שליחה</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div style="background:#F8F8F8; margin:auto; margin-top:5px;" class="container center-block">
+        <h6 class="center-block text-center">This wabpage is designed & coded by Idan Izicovich for Heznek La'atid company. All rights reserved &copy;</h6>
+    </div>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

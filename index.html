@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Main">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        טופס הגשת בקשה למלגה - הזנק לעתיד
+    </title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_4mqAA1U4f5Z7QghZrvT4D");
+        })();
+    </script>
+</head>
+<body>
+
+<div class="container text-center" dir="auto" ng-controller="FormController">
+    <div class="panel panel-primary" style="max-width:750px; display:block; margin:auto;">
+        <div class="panel-heading">
+            <h3 class="panel-title">טופס בקשת מלגה</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-group">
+                <div class="input-group">
+                    <input ng-model="data.firstName" type="text" class="form-control" placeholder="שם פרטי"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.lastName" type="text" class="form-control" placeholder="שם משפחה"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+
+                    <input ng-model="data.sex" id="sex" type="radio" class="form-control" value="male"
+                           aria-describedby="basic-addon1"> זכר
+                    <br/>
+                    <input ng-model="data.sex" id="sex" type="radio" class="form-control" value="female"
+                           aria-describedby="basic-addon1"> נקבה
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    תאריך הגשת הטופס: {{data.dateNow}}
+                    <input ng-model="data.submitDate" type="hidden" class="form-control" value="{{data.dateNow}}"
+                           aria-describedby="basic-addon1" disabled>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.id" type="text" class="form-control" placeholder="תעודת זהות"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+
+                <div class='input-group date'>
+                    <input ng-model="data.birthday" type='text' class="form-control" placeholder="תאריך לידה"
+                           id='datetimepicker1'/>
+                </div>
+
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.nSiblings" type="number" class="form-control" placeholder="מספר אחים"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.cell" type="number" class="form-control" placeholder="פלאפון"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.email" type="email" class="form-control" placeholder="דואר אלקטרוני - אימייל תקין"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.parentsLocation" type="text" class="form-control" placeholder="יישוב הורים"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.myLocation" type="text" class="form-control"
+                           placeholder="מיקום מגורים בזמן הלימודים" aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.fatherOrigin" type="text" class="form-control" placeholder="ארץ מוצא אב"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.motherOrigin" type="text" class="form-control" placeholder="ארץ מוצא אם"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.highSchoolName" type="text" class="form-control" placeholder="שם בית ספר תיכון"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.formerPrograms" type="text" class="form-control" placeholder="תוכניות בהן השתתפתי"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.currentInstitution" type="text" class="form-control" placeholder="מוסד אקדמי נוכחי"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.currentYear" type="number" class="form-control" placeholder="שנה אקדמית נוכחית"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.major" type="text" class="form-control" placeholder="תחום לימוד ראשי"
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.secondary" type="text" class="form-control"
+                           placeholder="תחום לימוד משני (במידה ויש)" aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.disabilities" type="checkbox" class="form-control" placeholder=""
+                           aria-describedby="basic-addon1"/>האם קיימים אבחונים ללקויות למידה ואו קשב וריכוז (כולל
+                    מתקופת התיכון)? אם כן סמנ/י V
+                </div>
+                <br/>
+
+                <div class="input-group">
+                        <textarea ng-model="data.activity" maxlength="1000" cols="200" class="form-control"
+                                  placeholder="ציינ/י בקצרה על השתתפות בפעילות הזנק בתיכון (האם השתתפת בפעילות מיוחדת במסגרת התוכנית לדוגמה פגישות עם תורמים/ הרצאות/ הובלת פרוייקטים וכו')"
+                                  aria-describedby="basic-addon1"></textarea>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                        <textarea ng-model="data.reason" maxlength="1000" cols="200" class="form-control"
+                                  placeholder="סיבת בקשת המלגה" aria-describedby="basic-addon1"></textarea>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                        <textarea ng-model="data.service" maxlength="1000" cols="200" class="form-control"
+                                  placeholder="נא לפרט  לגבי השירות הצבאי/לאומי (משך, תפקיד, חיל, קבע במידה ורלוונטי, האם קיבלת במסגרת הצבא תנאי שירות מיוחדים – ת&quot;ש, תשמ&quot;ש וכו'"
+                                  aria-describedby="basic-addon1"></textarea>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                        <textarea ng-model="data.relationshipStatus" maxlength="1000" cols="200" rows="5" class="form-control"
+                                  placeholder="נא לפרט  מצב אישי ומשפחתי (כולל עיסוק הורים ואחים – נא לציין האם ההורים והאחים אקדמיים) "
+                                  aria-describedby="basic-addon1"></textarea>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                        <textarea ng-model="data.socialEconomic" maxlength="1000" cols="200" rows="10" class="form-control"
+                                  placeholder="נא לפרט מצב סוציו-אקונומי, בעיות (כלכליות, משפחתיות, בריאותיות וכדומה בהווה או בעבר , במידה ואחד מההורים מקבל מקור הכנסה נוסף נא לציין זאת  כדוגמת - קצבה מבטוח לאומי,פנסיה מעבודה קודמת וכו')"
+                                  aria-describedby="basic-addon1"></textarea>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                        <textarea ng-model="data.lifeStory" maxlength="1000" cols="200" rows="10"  class="form-control"
+                                  placeholder="סיפור חיים בקווים כלליים: מקומות התנדבות  (במידה והיו), מקומות עבודה מיוחדים, אירועים חשובים"
+                                  aria-describedby="basic-addon1"></textarea>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                        <textarea ng-model="data.hobby" maxlength="1000" cols="200" rows="3" type="text" class="form-control"
+                                  placeholder="במידה וישנו תחום אישי ,עניין מיוחד או תחום שהמועמד/ת מתעסק/ת בו וטוב בו ( כדוגמת שירה ריקוד ספורט אומנות וכדומה )  מומלץ לציינו"
+                                  aria-describedby="basic-addon1"></textarea>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                        <textarea ng-model="data.otherScholarships" maxlength="1000" cols="200" rows="2" class="form-control"
+                                  placeholder="במידה והמועמד/ת הגיש בקשות אחרות למלגות ואו מקבלים מלגה ממקור אחר (מעל 5000 ש&quot;ח) יש לציין זאת"
+                                  aria-describedby="basic-addon1"></textarea>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                        <textarea ng-model="data.comments" maxlength="1000" cols="200" rows="10" class="form-control"
+                                  placeholder="הערות(דברים נוספים שחשוב לך לציין)"
+                                  aria-describedby="basic-addon1"></textarea>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    תעודת בגרות או תעודה המעידה על סיום לימודי התיכון בבית הספר שבו התקיימה התכנית
+                    <input ng-model="data.highSchoolGraduationFile" type="file"  class="form-control" placeholder=""
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    תמונה עדכנית
+                    <input ng-model="data.passportPicture" type="file"  class="form-control" placeholder=""
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    צילום ת.ז.
+                    <input ng-model="data.idPicture" type="file" class="form-control" placeholder=""
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+                <div class="input-group">
+                    שלושה תלושי שכר אחרונים של ההורים (יש לוודא שלמות הטפסים בעת הסריקה).
+                    <input ng-model="data.salary" type="file" class="form-control" placeholder=""
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+                <div class="input-group">
+                    תעודת שחרור מצה"ל או שירות לאומי (תעודת הערכה, בעלת פירוט של אופי השירות)
+                    <input ng-model="data.serviceFreePic" type="file" class="form-control" placeholder=""
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+                <div class="input-group">
+                    ללומדים בפועל - אישור לימודים עדכני ( אין צורך לשלוח עם הבקשה ניתן לצרף את האישור בשלב מאוחר
+                    יותר)
+                    <input ng-model="data.schoolApproval" type="file"  class="form-control" placeholder=""
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+                <div class="input-group">
+                    במידה ויש המלצות, יש לצרפן
+                    <input ng-model="data.recommend" type="file" class="form-control" placeholder=""
+                           aria-describedby="basic-addon1">
+                </div>
+                <br/>
+                <!-- TODO: form verification -->
+                <!-- TODO: BP of submit / reset -->
+                <div class="input-group container" style="position:center;">
+                    <button type="submit" class="btn-default;" ng-click="sendMail()">שליחה</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div style="background:#F8F8F8; margin:auto; margin-top:5px;" class="container center-block">
+    <h6 class="center-block text-center">This web-page is designed & coded by Idan Izicovich for Heznek La'atid
+        company. All rights reserved &copy;</h6>
+</div>
+
+
+<!--<ng-view>Loading...</ng-view>-->
+
+<!-- dependencies -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+
+<!-- my dependencies -->
+<script src="app.js"></script>
+
+</body>
+</html>
