@@ -33,22 +33,138 @@
 
         /////////////////////////////
         ///// fields and methods ////
-
-        $scope.data = {
-            dateNow: initDate()
-        };
-
+        $scope.data = initData();
+        $scope.myForm = {};
+        $scope.inputs = initInputs();
+        console.info($scope.inputs);
         $scope.sendMail = sendMail;
+        $scope.reset = reset;
+        $scope.isInValid = isInValid;
+        $scope.isValid = isValid;
+        $scope.validationClass = validationClass;
         /////////////////////////////
 
-        // private function
+        /**
+         * @private
+         * @return {object} inputs
+         */
+        function initInputs() {
+            return {
+                index: 0,
+                array: [
+                    {
+                        // "instance": {"default": $scope.firstName, "inner": $scope.myForm.firstName},
+                        "model": "firstName",
+                        "name": "firstName",
+                        "id": "firstName",
+                        "type": "text",
+                        "label": "שם פרטי",
+                        "placeholder": "שם פרטי",
+                        "helpText": "אותיות בלבד",
+                        "helpID": "firstNameHelp" // firstName end
+                    },
+                    {
+                        // "instance": {"default": $scope.firstName, "inner": $scope.myForm.firstName},
+                        "model": "email",
+                        "name": "email",
+                        "id": "email",
+                        "type": "email",
+                        "label": "אימייל",
+                        "placeholder": "כתובת דואר אלקטרוני תקנית",
+                        "helpText": "<a href=https://he.wikipedia.org/wiki/%D7%93%D7%95%D7%90%D7%A8_%D7%90%D7%9C%D7%A7%D7%98%D7%A8%D7%95%D7%A0%D7%99 target=_blank>איך לכתוב כתובת דואר תקינה?</a>",
+                        "helpID": "emailNameHelp" // firstName end
+                    }
+                    // {}
+                    // ,
+                    // {}
+                    // ,
+                    // {}
+                    // ,
+                    // {}
+                ] // array
+            }; // return
+        }// function
+
+
+        /**
+         * @private
+         * @returns {string} Date of today
+         */
         function initDate() {
             var d = new Date();
             return (d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear());
         }
 
+        /**
+         * @private
+         * @returns {object} data
+         */
+        function initData() {
+            return {
+                dateNow: initDate()
+            };
+        }
+
+        /**
+         * @public
+         * @description
+         * Checks if the input is <b>invalid</b>, for ng-show/hide and classes usage.
+         * @param input
+         * @returns {boolean} validation
+         */
+        function isInValid(input) {
+            console.log('isInValid input: ', input)
+            console.log('isInValid $scope: ', $scope);
+            var inputInstance = $scope[input];
+            if(inputInstance === undefined){
+                inputInstance = $scope.myForm[input];
+            }
+            return inputInstance.$invalid && inputInstance.$dirty;
+        }
+
+        /**
+         * @public
+         * @description
+         * Checks if the input is <b>valid</b>, for ng-show/hide and classes usage.
+         * @param input
+         * @return {boolean} validation
+         */
+        function isValid(input) {
+            var inputInstance = $scope[input];
+            if(inputInstance === undefined){
+                inputInstance = $scope.myForm[input];
+            }
+            return inputInstance.$valid && inputInstance.$dirty;
+        }
+
+        /**
+         * @public
+         * @description
+         * Building validation class (for bootstrap css purposes)
+         * @param input
+         * @return {{has-error: boolean, has-success: boolean}} class object for one form-group
+         * (bootstrap class)
+         */
+        function validationClass(input) {
+            console.log('validationClass input: ', input);
+            console.log('validationClass $scope: ', $scope);
+            return {
+                'has-error': isInValid(input),
+                'has-success': isValid(input)
+            }
+        }
+
+        /**
+         * @public
+         * @description
+         * sends the mail, public method for the $scope
+         */
         function sendMail() {
             mailService.sendMail($scope.data);
+        }
+
+        function reset() {
+            $scope.data = initData();
         }
     }
 
