@@ -15,24 +15,53 @@
 </head>
 <body>
 
-<div class="container text-center" dir="auto" ng-controller="FormController">
+<div class="container" dir="rtl" ng-controller="FormController">
     <div class="panel panel-primary" style="max-width:750px; display:block; margin:auto;">
-        <div class="panel-heading">
+        <div class="panel-heading text-center">
             <h3 class="panel-title">טופס בקשת מלגה</h3>
         </div>
         <div class="panel-body">
-            <form class="form-group">
-                <div class="input-group">
-                    <input ng-model="data.firstName" type="text" class="form-control" placeholder="שם פרטי"
-                           aria-describedby="basic-addon1">
+            <form name="myForm" ng-model="myForm" class="form-horizontal" novalidate>
+
+                <!---->
+                <!--<div class="form-group has-feedback"-->
+                     <!--ng-class="validationClass(myForm.firstName)">-->
+                    <!--<label for="firstName" class="control-label col-sm-2 col-sm-push-10">שם פרטי</label>-->
+                    <!--<div class="col-sm-10 col-sm-pull-2">-->
+                        <!--<input ng-model="data.firstName" name="firstName" id="firstName" type="text"-->
+                               <!--class="form-control" placeholder="שם פרטי" required aria-describedby="firstNameHelp">-->
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"-->
+                              <!--ng-show="isInValid(myForm.firstName)" aria-hidden="true"></span>-->
+                        <!--<span class="glyphicon glyphicon-ok form-control-feedback"-->
+                              <!--ng-show="isValid(myForm.firstName)" aria-hidden="true"></span>-->
+                        <!--<span id="firstNameHelp" class="help-block"-->
+                              <!--ng-show="isInValid(myForm.firstName)">אותיות בלבד</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!---->
+
+                <!-- todo: TEST AUTO -->
+                <div ng-repeat="input in inputs.array" class="form-group has-feedback"
+                     ng-class="validationClass(input.model)">
+                    <label for="{{::input.id}}" class="control-label col-sm-2 col-sm-push-10">{{::input.label}}</label>
+                    <div class="col-sm-10 col-sm-pull-2">
+                        <input ng-model="input.model" name="{{::input.name}}" id="{{::input.id}}" type="{{::input.type}}"
+                               class="form-control" placeholder="{{::input.placeholder}}"
+                               required aria-describedby="{{::input.helpID}}" value="" />
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"-->
+                              <!--ng-show="isInValid(input.model)" aria-hidden="true"></span>-->
+                        <!--<span class="glyphicon glyphicon-ok form-control-feedback"-->
+                              <!--ng-show="isValid(input.model)" aria-hidden="true"></span>-->
+                        <!--<span id="{{input.helpID}}" class="help-block"-->
+                              <!--ng-show="isInValid(input.model)">אותיות בלבד</span>-->
+                    </div>
                 </div>
-                <br/>
+                <!-- END TEST AUTO -->
 
                 <div class="input-group">
                     <input ng-model="data.lastName" type="text" class="form-control" placeholder="שם משפחה"
-                           aria-describedby="basic-addon1">
+                           aria-describedby="basic-addon1" required>
                 </div>
-                <br/>
 
                 <div class="input-group">
 
@@ -53,7 +82,7 @@
 
                 <div class="input-group">
                     <input ng-model="data.id" type="text" class="form-control" placeholder="תעודת זהות"
-                           aria-describedby="basic-addon1">
+                           aria-describedby="basic-addon1" required>
                 </div>
                 <br/>
 
@@ -67,66 +96,84 @@
 
                 <div class="input-group">
                     <input ng-model="data.nSiblings" type="number" class="form-control" placeholder="מספר אחים"
-                           aria-describedby="basic-addon1">
+                           aria-describedby="basic-addon1" required>
                 </div>
                 <br/>
 
                 <div class="input-group">
                     <input ng-model="data.cell" type="number" class="form-control" placeholder="פלאפון"
-                           aria-describedby="basic-addon1">
+                           aria-describedby="basic-addon1" required>
                 </div>
                 <br/>
 
-                <div class="input-group">
-                    <input ng-model="data.email" type="email" class="form-control" placeholder="דואר אלקטרוני - אימייל תקין"
-                           aria-describedby="basic-addon1">
-                </div>
-                <br/>
+                <!--<div class="form-group has-feedback"-->
+                     <!--ng-class="validationClass(myForm.email)">-->
+                    <!--<label for="email" class="control-label col-sm-2 col-sm-push-10">Email</label>-->
+                    <!--<div class="col-sm-10 col-sm-pull-2">-->
+                        <!--<input ng-model="data.email" name="email" id="email" type="email" class="form-control"-->
+                               <!--placeholder="דואר אלקטרוני - אימייל תקין"-->
+                               <!--required>-->
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"-->
+                              <!--ng-show="myForm.email.$invalid && myForm.email.$dirty"></span>-->
+                        <!--<span class="glyphicon glyphicon-ok form-control-feedback"-->
+                              <!--ng-show="isValid(myForm.email)"></span>-->
+                        <!--<span id="emailHelp" class="help-block" ng-show="isInValid(myForm.email)">-->
+                            <!--<a href="https://he.wikipedia.org/wiki/%D7%93%D7%95%D7%90%D7%A8_%D7%90%D7%9C%D7%A7%D7%98%D7%A8%D7%95%D7%A0%D7%99"-->
+                               <!--target="_blank">איך לכתוב כתובת דואר תקינה?</a>-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<br/>-->
 
                 <div class="input-group">
-                    <input ng-model="data.parentsLocation" type="text" class="form-control" placeholder="יישוב הורים"
-                           aria-describedby="basic-addon1">
+                    <input ng-model="data.parentsLocation" type="text" class="form-control"
+                           placeholder="יישוב הורים"
+                           aria-describedby="basic-addon1" required>
                 </div>
                 <br/>
 
                 <div class="input-group">
                     <input ng-model="data.myLocation" type="text" class="form-control"
-                           placeholder="מיקום מגורים בזמן הלימודים" aria-describedby="basic-addon1">
+                           placeholder="מיקום מגורים בזמן הלימודים" aria-describedby="basic-addon1" required>
                 </div>
                 <br/>
 
                 <div class="input-group">
                     <input ng-model="data.fatherOrigin" type="text" class="form-control" placeholder="ארץ מוצא אב"
-                           aria-describedby="basic-addon1">
+                           aria-describedby="basic-addon1" required>
                 </div>
                 <br/>
 
                 <div class="input-group">
                     <input ng-model="data.motherOrigin" type="text" class="form-control" placeholder="ארץ מוצא אם"
+                           aria-describedby="basic-addon1" required>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.highSchoolName" type="text" class="form-control"
+                           placeholder="שם בית ספר תיכון"
+                           aria-describedby="basic-addon1" required>
+                </div>
+                <br/>
+
+                <div class="input-group">
+                    <input ng-model="data.formerPrograms" type="text" class="form-control"
+                           placeholder="תוכניות בהן השתתפתי"
                            aria-describedby="basic-addon1">
                 </div>
                 <br/>
 
                 <div class="input-group">
-                    <input ng-model="data.highSchoolName" type="text" class="form-control" placeholder="שם בית ספר תיכון"
+                    <input ng-model="data.currentInstitution" type="text" class="form-control"
+                           placeholder="מוסד אקדמי נוכחי"
                            aria-describedby="basic-addon1">
                 </div>
                 <br/>
 
                 <div class="input-group">
-                    <input ng-model="data.formerPrograms" type="text" class="form-control" placeholder="תוכניות בהן השתתפתי"
-                           aria-describedby="basic-addon1">
-                </div>
-                <br/>
-
-                <div class="input-group">
-                    <input ng-model="data.currentInstitution" type="text" class="form-control" placeholder="מוסד אקדמי נוכחי"
-                           aria-describedby="basic-addon1">
-                </div>
-                <br/>
-
-                <div class="input-group">
-                    <input ng-model="data.currentYear" type="number" class="form-control" placeholder="שנה אקדמית נוכחית"
+                    <input ng-model="data.currentYear" type="number" class="form-control"
+                           placeholder="שנה אקדמית נוכחית"
                            aria-describedby="basic-addon1">
                 </div>
                 <br/>
@@ -171,35 +218,39 @@
                 <br/>
 
                 <div class="input-group">
-                        <textarea ng-model="data.relationshipStatus" maxlength="1000" cols="200" rows="5" class="form-control"
+                        <textarea ng-model="data.relationshipStatus" maxlength="1000" cols="200" rows="5"
+                                  class="form-control"
                                   placeholder="נא לפרט  מצב אישי ומשפחתי (כולל עיסוק הורים ואחים – נא לציין האם ההורים והאחים אקדמיים) "
                                   aria-describedby="basic-addon1"></textarea>
                 </div>
                 <br/>
 
                 <div class="input-group">
-                        <textarea ng-model="data.socialEconomic" maxlength="1000" cols="200" rows="10" class="form-control"
+                        <textarea ng-model="data.socialEconomic" maxlength="1000" cols="200" rows="10"
+                                  class="form-control"
                                   placeholder="נא לפרט מצב סוציו-אקונומי, בעיות (כלכליות, משפחתיות, בריאותיות וכדומה בהווה או בעבר , במידה ואחד מההורים מקבל מקור הכנסה נוסף נא לציין זאת  כדוגמת - קצבה מבטוח לאומי,פנסיה מעבודה קודמת וכו')"
                                   aria-describedby="basic-addon1"></textarea>
                 </div>
                 <br/>
 
                 <div class="input-group">
-                        <textarea ng-model="data.lifeStory" maxlength="1000" cols="200" rows="10"  class="form-control"
+                        <textarea ng-model="data.lifeStory" maxlength="1000" cols="200" rows="10" class="form-control"
                                   placeholder="סיפור חיים בקווים כלליים: מקומות התנדבות  (במידה והיו), מקומות עבודה מיוחדים, אירועים חשובים"
                                   aria-describedby="basic-addon1"></textarea>
                 </div>
                 <br/>
 
                 <div class="input-group">
-                        <textarea ng-model="data.hobby" maxlength="1000" cols="200" rows="3" type="text" class="form-control"
+                        <textarea ng-model="data.hobby" maxlength="1000" cols="200" rows="3" type="text"
+                                  class="form-control"
                                   placeholder="במידה וישנו תחום אישי ,עניין מיוחד או תחום שהמועמד/ת מתעסק/ת בו וטוב בו ( כדוגמת שירה ריקוד ספורט אומנות וכדומה )  מומלץ לציינו"
                                   aria-describedby="basic-addon1"></textarea>
                 </div>
                 <br/>
 
                 <div class="input-group">
-                        <textarea ng-model="data.otherScholarships" maxlength="1000" cols="200" rows="2" class="form-control"
+                        <textarea ng-model="data.otherScholarships" maxlength="1000" cols="200" rows="2"
+                                  class="form-control"
                                   placeholder="במידה והמועמד/ת הגיש בקשות אחרות למלגות ואו מקבלים מלגה ממקור אחר (מעל 5000 ש&quot;ח) יש לציין זאת"
                                   aria-describedby="basic-addon1"></textarea>
                 </div>
@@ -214,14 +265,14 @@
 
                 <div class="input-group">
                     תעודת בגרות או תעודה המעידה על סיום לימודי התיכון בבית הספר שבו התקיימה התכנית
-                    <input ng-model="data.highSchoolGraduationFile" type="file"  class="form-control" placeholder=""
+                    <input ng-model="data.highSchoolGraduationFile" type="file" class="form-control" placeholder=""
                            aria-describedby="basic-addon1">
                 </div>
                 <br/>
 
                 <div class="input-group">
                     תמונה עדכנית
-                    <input ng-model="data.passportPicture" type="file"  class="form-control" placeholder=""
+                    <input ng-model="data.passportPicture" type="file" class="form-control" placeholder=""
                            aria-describedby="basic-addon1">
                 </div>
                 <br/>
@@ -247,7 +298,7 @@
                 <div class="input-group">
                     ללומדים בפועל - אישור לימודים עדכני ( אין צורך לשלוח עם הבקשה ניתן לצרף את האישור בשלב מאוחר
                     יותר)
-                    <input ng-model="data.schoolApproval" type="file"  class="form-control" placeholder=""
+                    <input ng-model="data.schoolApproval" type="file" class="form-control" placeholder=""
                            aria-describedby="basic-addon1">
                 </div>
                 <br/>
@@ -259,8 +310,18 @@
                 <br/>
                 <!-- TODO: form verification -->
                 <!-- TODO: BP of submit / reset -->
+
                 <div class="input-group container" style="position:center;">
-                    <button type="submit" class="btn-default;" ng-click="sendMail()">שליחה</button>
+                    <!-- Reset button - disabled at the moment - @depreciated  -->
+                    <!--<div>-->
+                    <!--<button type="button" ng-click="reset()" ng-disabled="myForm.$pristine">מחיקה</button>-->
+                    <!--</div>-->
+                    <div>
+                        <button type="submit" class="btn btn-default" ng-click="sendMail()"
+                                ng-disabled="myForm.$invalid || myForm.$pristine">שליחה
+                        </button>
+
+                    </div>
                 </div>
             </form>
         </div>
