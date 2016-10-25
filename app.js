@@ -118,6 +118,13 @@
             var inputInstance = $scope[input];
             if(inputInstance === undefined){
                 inputInstance = $scope.myForm[input];
+                if(inputInstance === undefined) {
+                    inputInstance = input;
+                    if(inputInstance === undefined){
+                        console.warn('inputInstance undefined:', input);
+                    }
+                }
+
             }
             return inputInstance.$invalid && inputInstance.$dirty;
         }
@@ -133,6 +140,12 @@
             var inputInstance = $scope[input];
             if(inputInstance === undefined){
                 inputInstance = $scope.myForm[input];
+                if(inputInstance === undefined) {
+                    inputInstance = input;
+                    if(inputInstance === undefined){
+                        console.warn('inputInstance undefined:', input);
+                    }
+                }
             }
             return inputInstance.$valid && inputInstance.$dirty;
         }

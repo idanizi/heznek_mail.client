@@ -23,40 +23,40 @@
         <div class="panel-body">
             <form name="myForm" ng-model="myForm" class="form-horizontal" novalidate>
 
-                <!---->
-                <!--<div class="form-group has-feedback"-->
-                     <!--ng-class="validationClass(myForm.firstName)">-->
-                    <!--<label for="firstName" class="control-label col-sm-2 col-sm-push-10">שם פרטי</label>-->
-                    <!--<div class="col-sm-10 col-sm-pull-2">-->
-                        <!--<input ng-model="data.firstName" name="firstName" id="firstName" type="text"-->
-                               <!--class="form-control" placeholder="שם פרטי" required aria-describedby="firstNameHelp">-->
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"-->
-                              <!--ng-show="isInValid(myForm.firstName)" aria-hidden="true"></span>-->
-                        <!--<span class="glyphicon glyphicon-ok form-control-feedback"-->
-                              <!--ng-show="isValid(myForm.firstName)" aria-hidden="true"></span>-->
-                        <!--<span id="firstNameHelp" class="help-block"-->
-                              <!--ng-show="isInValid(myForm.firstName)">אותיות בלבד</span>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!---->
-
                 <!-- todo: TEST AUTO -->
-                <div ng-repeat="input in inputs.array" class="form-group has-feedback"
-                     ng-class="validationClass(input.model)">
-                    <label for="{{::input.id}}" class="control-label col-sm-2 col-sm-push-10">{{::input.label}}</label>
+                <!--<div ng-repeat="input in inputs.array" class="form-group has-feedback"-->
+                <!--ng-class="validationClass(input.model)">-->
+                <!--<label for="{{::input.id}}" class="control-label col-sm-2 col-sm-push-10">{{::input.label}}</label>-->
+                <!--<div class="col-sm-10 col-sm-pull-2">-->
+                <!--<input ng-model="input.model" name="{{::input.name}}" id="{{::input.id}}"-->
+                <!--type="{{::input.type}}"-->
+                <!--class="form-control" placeholder="{{::input.placeholder}}"-->
+                <!--required aria-describedby="{{::input.helpID}}" value=""/>-->
+                <!--&lt;!&ndash;<span class="glyphicon glyphicon-remove form-control-feedback"&ndash;&gt;-->
+                <!--&lt;!&ndash;ng-show="isInValid(input.model)" aria-hidden="true"></span>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span class="glyphicon glyphicon-ok form-control-feedback"&ndash;&gt;-->
+                <!--&lt;!&ndash;ng-show="isValid(input.model)" aria-hidden="true"></span>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span id="{{input.helpID}}" class="help-block"&ndash;&gt;-->
+                <!--&lt;!&ndash;ng-show="isInValid(input.model)">אותיות בלבד</span>&ndash;&gt;-->
+                <!--hello-->
+                <!--</div>-->
+                <!--</div>-->
+                <!-- END TEST AUTO -->
+
+                <div class="form-group has-feedback"
+                     ng-class="validationClass(myForm.firstName)">
+                    <label for="firstName" class="control-label col-sm-2 col-sm-push-10">שם פרטי</label>
                     <div class="col-sm-10 col-sm-pull-2">
-                        <input ng-model="input.model" name="{{::input.name}}" id="{{::input.id}}" type="{{::input.type}}"
-                               class="form-control" placeholder="{{::input.placeholder}}"
-                               required aria-describedby="{{::input.helpID}}" value="" />
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"-->
-                              <!--ng-show="isInValid(input.model)" aria-hidden="true"></span>-->
-                        <!--<span class="glyphicon glyphicon-ok form-control-feedback"-->
-                              <!--ng-show="isValid(input.model)" aria-hidden="true"></span>-->
-                        <!--<span id="{{input.helpID}}" class="help-block"-->
-                              <!--ng-show="isInValid(input.model)">אותיות בלבד</span>-->
+                        <input ng-model="data.firstName" name="firstName" id="firstName" type="text"
+                               class="form-control" placeholder="שם פרטי" required aria-describedby="firstNameHelp">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"
+                              ng-show="isInValid(myForm.firstName)" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                              ng-show="isValid(myForm.firstName)" aria-hidden="true"></span>
+                        <span id="firstNameHelp" class="help-block"
+                              ng-show="isInValid(myForm.firstName)">אותיות בלבד</span>
                     </div>
                 </div>
-                <!-- END TEST AUTO -->
 
                 <div class="input-group">
                     <input ng-model="data.lastName" type="text" class="form-control" placeholder="שם משפחה"
@@ -74,8 +74,9 @@
                 <br/>
 
                 <div class="input-group">
-                    תאריך הגשת הטופס: {{data.dateNow}}
-                    <input ng-model="data.submitDate" type="hidden" class="form-control" value="{{data.dateNow}}"
+                    תאריך הגשת הטופס:
+                    <time pubdate>{{::data.dateNow}}</time>
+                    <input ng-model="data.submitDate" type="hidden" class="form-control" value="{{::data.dateNow}}"
                            aria-describedby="basic-addon1" disabled>
                 </div>
                 <br/>
@@ -107,21 +108,21 @@
                 <br/>
 
                 <!--<div class="form-group has-feedback"-->
-                     <!--ng-class="validationClass(myForm.email)">-->
-                    <!--<label for="email" class="control-label col-sm-2 col-sm-push-10">Email</label>-->
-                    <!--<div class="col-sm-10 col-sm-pull-2">-->
-                        <!--<input ng-model="data.email" name="email" id="email" type="email" class="form-control"-->
-                               <!--placeholder="דואר אלקטרוני - אימייל תקין"-->
-                               <!--required>-->
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"-->
-                              <!--ng-show="myForm.email.$invalid && myForm.email.$dirty"></span>-->
-                        <!--<span class="glyphicon glyphicon-ok form-control-feedback"-->
-                              <!--ng-show="isValid(myForm.email)"></span>-->
-                        <!--<span id="emailHelp" class="help-block" ng-show="isInValid(myForm.email)">-->
-                            <!--<a href="https://he.wikipedia.org/wiki/%D7%93%D7%95%D7%90%D7%A8_%D7%90%D7%9C%D7%A7%D7%98%D7%A8%D7%95%D7%A0%D7%99"-->
-                               <!--target="_blank">איך לכתוב כתובת דואר תקינה?</a>-->
-                        <!--</span>-->
-                    <!--</div>-->
+                <!--ng-class="validationClass(myForm.email)">-->
+                <!--<label for="email" class="control-label col-sm-2 col-sm-push-10">Email</label>-->
+                <!--<div class="col-sm-10 col-sm-pull-2">-->
+                <!--<input ng-model="data.email" name="email" id="email" type="email" class="form-control"-->
+                <!--placeholder="דואר אלקטרוני - אימייל תקין"-->
+                <!--required>-->
+                <!--<span class="glyphicon glyphicon-remove form-control-feedback"-->
+                <!--ng-show="myForm.email.$invalid && myForm.email.$dirty"></span>-->
+                <!--<span class="glyphicon glyphicon-ok form-control-feedback"-->
+                <!--ng-show="isValid(myForm.email)"></span>-->
+                <!--<span id="emailHelp" class="help-block" ng-show="isInValid(myForm.email)">-->
+                <!--<a href="https://he.wikipedia.org/wiki/%D7%93%D7%95%D7%90%D7%A8_%D7%90%D7%9C%D7%A7%D7%98%D7%A8%D7%95%D7%A0%D7%99"-->
+                <!--target="_blank">איך לכתוב כתובת דואר תקינה?</a>-->
+                <!--</span>-->
+                <!--</div>-->
                 <!--</div>-->
                 <!--<br/>-->
 
@@ -311,16 +312,19 @@
                 <!-- TODO: form verification -->
                 <!-- TODO: BP of submit / reset -->
 
-                <div class="input-group container" style="position:center;">
+                <div class="row pull-right">
                     <!-- Reset button - disabled at the moment - @depreciated  -->
                     <!--<div>-->
                     <!--<button type="button" ng-click="reset()" ng-disabled="myForm.$pristine">מחיקה</button>-->
                     <!--</div>-->
-                    <div>
-                        <button type="submit" class="btn btn-default" ng-click="sendMail()"
+                    <div class="col-xs-2">
+                        <button type="submit" class="btn btn-success" ng-click="sendMail()"
                                 ng-disabled="myForm.$invalid || myForm.$pristine">שליחה
                         </button>
-
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="reset" class="btn btn-default" ng-disabled="myForm.$pristine">איפוס
+                        </button>
                     </div>
                 </div>
             </form>
