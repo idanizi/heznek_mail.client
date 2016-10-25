@@ -42,6 +42,7 @@
         $scope.isInValid = isInValid;
         $scope.isValid = isValid;
         $scope.validationClass = validationClass;
+        $scope.checkRules = checkRules;
         /////////////////////////////
 
         /**
@@ -107,26 +108,40 @@
 
         /**
          * @public
+         * @returns {boolean} true in case the costume rules pass with the input argument
+         */
+        function checkRules(input, rules) {
+            for (var rule in rules) {
+                if (!rule(input)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /**
+         * @public
          * @description
          * Checks if the input is <b>invalid</b>, for ng-show/hide and classes usage.
          * @param input
          * @returns {boolean} validation
          */
-        function isInValid(input) {
+        function isInValid(input, rules) {
             console.log('isInValid input: ', input)
             console.log('isInValid $scope: ', $scope);
             var inputInstance = $scope[input];
-            if(inputInstance === undefined){
+            if (inputInstance === undefined) {
                 inputInstance = $scope.myForm[input];
-                if(inputInstance === undefined) {
+                if (inputInstance === undefined) {
                     inputInstance = input;
-                    if(inputInstance === undefined){
+                    if (inputInstance === undefined) {
                         console.warn('inputInstance undefined:', input);
                     }
                 }
 
             }
-            return inputInstance.$invalid && inputInstance.$dirty;
+            return (inputInstance.$invalid || !checkRules(inputInstance, rules)) && inputInstance.$dirty;
         }
 
         /**
@@ -136,18 +151,18 @@
          * @param input
          * @return {boolean} validation
          */
-        function isValid(input) {
+        function isValid(input, rules) {
             var inputInstance = $scope[input];
-            if(inputInstance === undefined){
+            if (inputInstance === undefined) {
                 inputInstance = $scope.myForm[input];
-                if(inputInstance === undefined) {
+                if (inputInstance === undefined) {
                     inputInstance = input;
-                    if(inputInstance === undefined){
+                    if (inputInstance === undefined) {
                         console.warn('inputInstance undefined:', input);
                     }
                 }
             }
-            return inputInstance.$valid && inputInstance.$dirty;
+            return inputInstance.$valid && checkRules(inputInstance, rules) && inputInstance.$dirty;
         }
 
         /**
@@ -158,12 +173,12 @@
          * @return {{has-error: boolean, has-success: boolean}} class object for one form-group
          * (bootstrap class)
          */
-        function validationClass(input) {
+        function validationClass(input, rules) {
             console.log('validationClass input: ', input);
             console.log('validationClass $scope: ', $scope);
             return {
-                'has-error': isInValid(input),
-                'has-success': isValid(input)
+                'has-error': isInValid(input, rules),
+                'has-success': isValid(input, rules)
             }
         }
 
