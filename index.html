@@ -44,17 +44,18 @@
                 <!-- END TEST AUTO -->
 
                 <div class="form-group has-feedback"
-                     ng-class="validationClass(myForm.firstName)">
+                     ng-class="validationClass(myForm.firstName, [data.customRules[test]])">
                     <label for="firstName" class="control-label col-sm-2 col-sm-push-10">שם פרטי</label>
                     <div class="col-sm-10 col-sm-pull-2">
                         <input ng-model="data.firstName" name="firstName" id="firstName" type="text"
-                               class="form-control" placeholder="שם פרטי" required aria-describedby="firstNameHelp">
+                               class="form-control" placeholder="שם פרטי" required aria-describedby="firstNameHelp"
+                               pattern="[\w, ]+">
                         <span class="glyphicon glyphicon-remove form-control-feedback"
-                              ng-show="isInValid(myForm.firstName)" aria-hidden="true"></span>
+                              ng-show="isInValid(myForm.firstName, [data.customRules[test]])" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-ok form-control-feedback"
-                              ng-show="isValid(myForm.firstName)" aria-hidden="true"></span>
+                              ng-show="isValid(myForm.firstName, [data.customRules[test]])" aria-hidden="true"></span>
                         <span id="firstNameHelp" class="help-block"
-                              ng-show="isInValid(myForm.firstName)">אותיות בלבד</span>
+                              ng-show="isInValid(myForm.firstName, [data.customRules[test]])">אותיות בלבד</span>
                     </div>
                 </div>
 
@@ -323,7 +324,8 @@
                         </button>
                     </div>
                     <div class="col-xs-6">
-                        <button type="reset" class="btn btn-default" ng-click="reset()" ng-disabled="myForm.$pristine">איפוס
+                        <button type="reset" class="btn btn-default" ng-click="reset()" ng-disabled="myForm.$pristine">
+                            איפוס
                         </button>
                     </div>
                 </div>

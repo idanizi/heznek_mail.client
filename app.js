@@ -102,8 +102,16 @@
          */
         function initData() {
             return {
-                dateNow: initDate()
-            };
+                customRules: {
+
+                    test: function (x) {
+                        return true;
+                    }
+
+                },
+                dateNow: initDate(),
+            }
+                ;
         }
 
         /**
@@ -112,7 +120,8 @@
          */
         function checkRules(input, rules) {
             for (var rule in rules) {
-                if (!rule(input)) {
+                console.debug(rule);
+                if (!rule(input.value)) {
                     return false;
                 }
             }
