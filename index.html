@@ -65,7 +65,8 @@
                      ng-class="validationClass(myForm.lastName, [])">
                     <label for="lastName" class="control-label col-sm-2 col-sm-push-10">שם משפחה</label>
                     <div class="col-sm-10 col-sm-pull-2">
-                        <input ng-model="data.lastName" name="lastName" id="lastName" type="text" class="form-control" placeholder="שם משפחה"
+                        <input ng-model="data.lastName" name="lastName" id="lastName" type="text" class="form-control"
+                               placeholder="שם משפחה"
                                aria-describedby="basic-addon1"
                                required aria-describedby="lastNameHelp" pattern="[\u05D0-\u05EA, ]+">
                         <span class="glyphicon glyphicon-remove form-control-feedback"
@@ -77,17 +78,21 @@
                     </div>
                 </div>
 
-                <div class="input-group">
+                <div dir="ltr" class="input-group">
+                    <label class="radio" for="sex_m">
+                        <input ng-model="data.sex" id="sex_m" name="sex" type="radio" value="male">
+                        <bdi>זכר</bdi>
+                    </label>
 
-                    <input ng-model="data.sex" id="sex" type="radio" class="form-control" value="male"
-                           aria-describedby="basic-addon1"> זכר
-                    <input ng-model="data.sex" id="sex" type="radio" class="form-control" value="female"
-                           aria-describedby="basic-addon1"> נקבה
+                    <label class="radio" for="sex_f">
+                        <input ng-model="data.sex" id="sex_f" name="sex" type="radio" value="female">
+                        <bdi>נקבה</bdi>
+                    </label>
                 </div>
+
                 <br/>
 
-                <div class="input-group">
-                    תאריך הגשת הטופס:
+                <div class="form-group"><bdi>תאריך הגשת הטופס: </bdi>
                     <time pubdate>{{::data.dateNow}}</time>
                     <input ng-model="data.submitDate" type="hidden" class="form-control" value="{{::data.dateNow}}"
                            aria-describedby="basic-addon1" disabled>
