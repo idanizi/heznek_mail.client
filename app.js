@@ -251,7 +251,7 @@
                 /**
                  * @namespace
                  * @name attachments
-                 * @todo Allow attachments - highSchoolGraduationFile, passportPicture, idPicture, salary, serviceFreePic, schoolApproval, recommend.
+                 * @todo (big-feature) Allow attachments - highSchoolGraduationFile, passportPicture, idPicture, salary, serviceFreePic, schoolApproval, recommend.
                  * @description
                  *  this part requires to pay more money for having attachments. by upgrading the account of
                  *  EmailJS - <a href='https://dashboard.emailjs.com/account'>https://dashboard.emailjs.com/account</a>

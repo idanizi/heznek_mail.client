@@ -43,32 +43,44 @@
                 <!--</div>-->
                 <!-- END TEST AUTO -->
 
+                <!--Note: fist sample-->
                 <div class="form-group has-feedback"
-                     ng-class="validationClass(myForm.firstName, [data.customRules[test]])">
+                     ng-class="validationClass(myForm.firstName, [])">
                     <label for="firstName" class="control-label col-sm-2 col-sm-push-10">שם פרטי</label>
                     <div class="col-sm-10 col-sm-pull-2">
                         <input ng-model="data.firstName" name="firstName" id="firstName" type="text"
                                class="form-control" placeholder="שם פרטי" required aria-describedby="firstNameHelp"
-                               pattern="[\w, ]+">
+                               pattern="[\u05D0-\u05EA, ]+">
                         <span class="glyphicon glyphicon-remove form-control-feedback"
-                              ng-show="isInValid(myForm.firstName, [data.customRules[test]])" aria-hidden="true"></span>
+                              ng-show="isInValid(myForm.firstName, [])" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-ok form-control-feedback"
-                              ng-show="isValid(myForm.firstName, [data.customRules[test]])" aria-hidden="true"></span>
+                              ng-show="isValid(myForm.firstName, [])" aria-hidden="true"></span>
                         <span id="firstNameHelp" class="help-block"
-                              ng-show="isInValid(myForm.firstName, [data.customRules[test]])">אותיות בלבד</span>
+                              ng-show="isInValid(myForm.firstName, [])">אותיות בעברית בלבד</span>
                     </div>
                 </div>
+                <!--Note: fist sample end-->
 
-                <div class="input-group">
-                    <input ng-model="data.lastName" type="text" class="form-control" placeholder="שם משפחה"
-                           aria-describedby="basic-addon1" required>
+                <div class="form-group has-feedback"
+                     ng-class="validationClass(myForm.lastName, [])">
+                    <label for="lastName" class="control-label col-sm-2 col-sm-push-10">שם משפחה</label>
+                    <div class="col-sm-10 col-sm-pull-2">
+                        <input ng-model="data.lastName" name="lastName" id="lastName" type="text" class="form-control" placeholder="שם משפחה"
+                               aria-describedby="basic-addon1"
+                               required aria-describedby="lastNameHelp" pattern="[\u05D0-\u05EA, ]+">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"
+                              ng-show="isInValid(myForm.lastName, [])" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                              ng-show="isValid(myForm.lastName, [])" aria-hidden="true"></span>
+                        <span id="lastNameHelp" class="help-block"
+                              ng-show="isInValid(myForm.lastName, [])">אותיות בעברית בלבד</span>
+                    </div>
                 </div>
 
                 <div class="input-group">
 
                     <input ng-model="data.sex" id="sex" type="radio" class="form-control" value="male"
                            aria-describedby="basic-addon1"> זכר
-                    <br/>
                     <input ng-model="data.sex" id="sex" type="radio" class="form-control" value="female"
                            aria-describedby="basic-addon1"> נקבה
                 </div>
@@ -310,14 +322,12 @@
                            aria-describedby="basic-addon1">
                 </div>
                 <br/>
+
                 <!-- TODO: form verification -->
-                <!-- TODO: BP of submit / reset -->
 
                 <div class="row pull-right">
-                    <!-- Reset button - disabled at the moment - @depreciated  -->
-                    <!--<div>-->
-                    <!--<button type="button" ng-click="reset()" ng-disabled="myForm.$pristine">מחיקה</button>-->
-                    <!--</div>-->
+                    <!-- TODO: BP of submit / reset -->
+                    <!--FIXME the send button is always disabled! :(-->
                     <div class="col-xs-2">
                         <button type="submit" class="btn btn-success" ng-click="sendMail()"
                                 ng-disabled="myForm.$invalid || myForm.$pristine">שליחה
