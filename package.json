@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/idanizi/heznek_mail.client/issues"
   },
-  "homepage": "https://github.com/idanizi/heznek_mail.client#readme"
+  "homepage": "https://github.com/idanizi/heznek_mail.client#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
 }

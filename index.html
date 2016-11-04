@@ -5,7 +5,7 @@
     <title>
         טופס הגשת בקשה למלגה - הזנק לעתיד
     </title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script type="text/javascript">
         (function () {
@@ -44,6 +44,7 @@
                 <!-- END TEST AUTO -->
 
                 <!--Note: fist sample-->
+                <!--Note: first name-->
                 <div class="form-group has-feedback"
                      ng-class="validationClass(myForm.firstName, [])">
                     <label for="firstName" class="control-label col-sm-2 col-sm-push-10">שם פרטי</label>
@@ -61,6 +62,7 @@
                 </div>
                 <!--Note: fist sample end-->
 
+                <!--Note: last name-->
                 <div class="form-group has-feedback"
                      ng-class="validationClass(myForm.lastName, [])">
                     <label for="lastName" class="control-label col-sm-2 col-sm-push-10">שם משפחה</label>
@@ -78,33 +80,97 @@
                     </div>
                 </div>
 
-                <div dir="ltr" class="input-group">
-                    <label class="radio" for="sex_m">
-                        <input ng-model="data.sex" id="sex_m" name="sex" type="radio" value="male">
-                        <bdi>זכר</bdi>
-                    </label>
+                <!--note: sex as radio buttons-->
+                <!--<div class="form-group container">-->
 
-                    <label class="radio" for="sex_f">
-                        <input ng-model="data.sex" id="sex_f" name="sex" type="radio" value="female">
-                        <bdi>נקבה</bdi>
+                <!--<label class="" for="sex_m">-->
+                <!--<input ng-model="data.sex" id="sex_m" name="sex" type="radio" value="male">-->
+                <!--&nbsp;-->
+                <!--<bdi>זכר</bdi>-->
+                <!--</label>-->
+
+                <!--<br/>-->
+
+                <!--<label class="" for="sex_f">-->
+                <!--<input ng-model="data.sex" id="sex_f" name="sex" type="radio" value="female">-->
+                <!--&nbsp;-->
+                <!--<bdi>נקבה</bdi>-->
+                <!--</label>-->
+                <!--</div>-->
+
+                <!--note: sex as select-->
+                <div class="form-group">
+                    <label for="firstName" class="control-label col-sm-2 col-sm-push-10">
+                        <bdi>מין</bdi>
                     </label>
+                    <div class="col-sm-10 col-sm-pull-2">
+                        <select class="form-control">
+                            <option value="null">בחר</option>
+                            <option value="male">זכר</option>
+                            <option value="female">נקבה</option>
+                        </select>
+                    </div>
                 </div>
 
-                <br/>
+                <!--Note: submit date-->
+                <div class="form-group">
+                    <label class="control-label col-sm-8" for="submitDate">
+                        <bdi>תאריך הגשת הטופס:</bdi>
+                        <time pubdate>{{::data.dateNow}}</time>
+                    </label>
 
-                <div class="form-group"><bdi>תאריך הגשת הטופס: </bdi>
-                    <time pubdate>{{::data.dateNow}}</time>
-                    <input ng-model="data.submitDate" type="hidden" class="form-control" value="{{::data.dateNow}}"
+                    <input ng-model="data.submitDate" id="submitDate" name="submitDate" type="hidden"
+                           class="form-control col-sm-4" value="{{::data.dateNow}}"
                            aria-describedby="basic-addon1" disabled>
                 </div>
-                <br/>
 
-                <div class="input-group">
-                    <input ng-model="data.id" type="text" class="form-control" placeholder="תעודת זהות"
-                           aria-describedby="basic-addon1" required>
+                <!--Note: id-->
+                <div class="form-group has-feedback" ng-class="validationClass(myForm.id, [])">
+                    <label class="control-label col-sm-2 col-sm-push-10" for="id">
+                        <bdi>תעודת זהות</bdi>
+                    </label>
+                    <div class="col-sm-10 col-sm-pull-2">
+                        <input aria-describedby="idHelp" class="form-control"
+                               id="id" name="id" ng-model="data.id" placeholder="תעודת זהות"
+                               pattern="[\d]{9}" required type="text"/>
+                        <span aria-hidden="true" class="glyphicon glyphicon-remove form-control-feedback"
+                              ng-show="isInValid(myForm.id, [])"></span>
+                        <span aria-hidden="true" class="glyphicon glyphicon-ok form-control-feedback"
+                              ng-show="isValid(myForm.id, [])"></span>
+                        <span class="help-block" id="idHelp" ng-show="isInValid(myForm.id, [])">
+                            <bdi>9 ספרות בלבד (ת.ז. כולל ביקורת, אם המספר פחות מ9 ספרות, יש להוסיף 0 לפני)</bdi>
+                        </span>
+                    </div>
                 </div>
-                <br/>
 
+                <!--Note: birthday as textbox-->
+                <div class="form-group has-feedback" ng-class="validationClass(myForm.birthday, [])">
+                    <label class="control-label col-sm-2 col-sm-push-10" for="birthday">
+                        <bdi>תאריך לידה</bdi>
+                    </label>
+                    <div class="col-sm-10 col-sm-pull-2">
+                        <input aria-describedby="birthdayHelp" class="form-control" id="birthday" name="birthday"
+                               ng-model="data.birthday"
+                               pattern="[\u05D0-\u05EA, ]+" placeholder="birthday" required="" type="text"/>
+                        <span aria-hidden="true" class="glyphicon glyphicon-remove form-control-feedback"
+                              ng-show="isInValid(myForm.birthday, [])"></span>
+                        <span aria-hidden="true" class="glyphicon glyphicon-ok form-control-feedback"
+                              ng-show="isValid(myForm.birthday, [])"></span>
+                        <span class="help-block" id="birthdayHelp" ng-show="isInValid(myForm.birthday, [])">
+                            <bdi>יש למלא תאריך לידה בצורת: DD-MM-YYYY</bdi>
+                        </span>
+                    </div>
+                </div>
+
+                <!--Note: birthday as datepicker-->
+                <div class="form-group">
+                    <div class="input-group date" data-provide="datepicker">
+                        <input type="text" class="form-control">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
 
                 <div class='input-group date'>
                     <input ng-model="data.birthday" type='text' class="form-control" placeholder="תאריך לידה"
@@ -358,8 +424,8 @@
 <!--<ng-view>Loading...</ng-view>-->
 
 <!-- dependencies -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/angular/angular.js"></script>
 
 <!-- my dependencies -->
 <script src="app.js"></script>
