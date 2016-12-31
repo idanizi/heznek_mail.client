@@ -36,13 +36,14 @@
         $scope.data = initData();
         $scope.myForm = {};
         $scope.inputs = initInputs();
-        console.info($scope.inputs);
+        // console.info($scope.inputs);
         $scope.sendMail = sendMail;
         $scope.reset = reset;
         $scope.isInValid = isInValid;
         $scope.isValid = isValid;
         $scope.validationClass = validationClass;
         $scope.checkRules = checkRules;
+        $scope.isValidDate = isValidDate;
         /////////////////////////////
 
         /**
@@ -119,10 +120,13 @@
          * @returns {boolean} true in case the costume rules pass with the input argument
          */
         function checkRules(input, rules) {
-            for (var rule in rules) {
-                console.debug(rule);
-                if (!rule(input.value)) {
-                    return false;
+            console.info("rules: ", rules);
+            for (var i = 0; i < rules.length; i++) {
+                console.debug("rule: " + rules[i]);
+                if (rules[i] === 'isValidDate') {
+                    if (!isValidDate(input)) {
+                        return false;
+                    }
                 }
             }
 
@@ -137,8 +141,8 @@
          * @returns {boolean} validation
          */
         function isInValid(input, rules) {
-            console.log('isInValid input: ', input)
-            console.log('isInValid $scope: ', $scope);
+            // console.log('isInValid input: ', input)
+            // console.log('isInValid $scope: ', $scope);
             var inputInstance = $scope[input];
             if (inputInstance === undefined) {
                 inputInstance = $scope.myForm[input];
@@ -183,12 +187,63 @@
          * (bootstrap class)
          */
         function validationClass(input, rules) {
-            console.log('validationClass input: ', input);
-            console.log('validationClass $scope: ', $scope);
+            // console.log('validationClass input: ', input);
+            // console.log('validationClass $scope: ', $scope);
             return {
                 'has-error': isInValid(input, rules),
                 'has-success': isValid(input, rules)
             }
+        }
+
+        /**
+         * @public
+         * @description
+         * Rule to validate the date:
+         * taking the date string and braking it to parts: day, month, year.
+         * checking if the parts are legal and returns boolean answer accordingly.
+         * @param date: string
+         * @return {boolean} true case legal value, otherwise - false.
+         */
+        function isValidDate(date) {
+
+            console.debug("isValidDate:", date.$modelValue);
+            var dateString = date.$modelValue;
+            if (!dateString) {
+                return false;
+            }
+            // First check for the pattern
+            // if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+            //     return false;
+
+            // replace '-' with '/'
+            dateString = dateString.replace(/-/g, "/");
+            console.debug("dateString:", dateString);
+            // Parse the date parts to integers
+            var parts = dateString.split("/");
+            var day = parseInt(parts[0], 10);
+            var month = parseInt(parts[1], 10);
+            var year = parseInt(parts[2], 10);
+
+            console.debug("date validation parts: ", day, month, year);
+            var d = new Date();
+            var currentYear = d.getFullYear();
+            // Check the ranges of month and year
+            // Note: minimum age limit - over 10 years old
+            if (year < 1900 || year > currentYear - 10 || month == 0 || month > 12) {
+                return false;
+
+            }
+
+            var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+            // Adjust for leap years
+            if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+                monthLength[1] = 29;
+
+            // Check the range of the day
+            var answer = (day > 0 && day <= monthLength[month - 1]);
+            console.debug("isValidDate answer:", answer);
+            return answer;
         }
 
         /**

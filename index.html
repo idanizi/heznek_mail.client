@@ -80,7 +80,7 @@
                     </div>
                 </div>
 
-                <!--note: sex as radio buttons-->
+                <!--note: sex as radio buttons : @deprecated-->
                 <!--<div class="form-group container">-->
 
                 <!--<label class="" for="sex_m">-->
@@ -144,38 +144,39 @@
                 </div>
 
                 <!--Note: birthday as textbox-->
-                <div class="form-group has-feedback" ng-class="validationClass(myForm.birthday, [])">
+                <div class="form-group has-feedback" ng-class="validationClass(myForm.birthday, ['isValidDate'])">
                     <label class="control-label col-sm-2 col-sm-push-10" for="birthday">
                         <bdi>תאריך לידה</bdi>
                     </label>
                     <div class="col-sm-10 col-sm-pull-2">
                         <input aria-describedby="birthdayHelp" class="form-control" id="birthday" name="birthday"
                                ng-model="data.birthday"
-                               pattern="[\d{2},.,\d{2},.,\d{4}]" placeholder="birthday" required="" type="text"/>
+                               pattern="\d{1,2}(-|/)\d{1,2}(-|/)\d{4}$" placeholder="birthday" required="" type="text"/>
                         <span aria-hidden="true" class="glyphicon glyphicon-remove form-control-feedback"
-                              ng-show="isInValid(myForm.birthday, [])"></span>
+                              ng-show="isInValid(myForm.birthday, ['isValidDate'])"></span>
                         <span aria-hidden="true" class="glyphicon glyphicon-ok form-control-feedback"
-                              ng-show="isValid(myForm.birthday, [])"></span>
-                        <span class="help-block" id="birthdayHelp" ng-show="isInValid(myForm.birthday, [])">
-                            <bdi>יש למלא תאריך לידה בצורת: DD-MM-YYYY</bdi>
+                              ng-show="isValid(myForm.birthday, ['isValidDate'])"></span>
+                        <span class="help-block" id="birthdayHelp"
+                              ng-show="isInValid(myForm.birthday, ['isValidDate'])">
+                            <bdi>יש למלא תאריך לידה חוקי בצורת: DD-MM-YYYY</bdi>
                         </span>
                     </div>
                 </div>
 
-                <!--Note: birthday as datepicker-->
-                <div class="form-group">
-                    <div class="input-group date" data-provide="datepicker">
-                        <input type="text" class="form-control">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
-                        </div>
-                    </div>
-                </div>
+                <!--Note: birthday as datepicker : @deprecated-->
+                <!--<div class="form-group">-->
+                <!--<div class="input-group date" data-provide="datepicker">-->
+                <!--<input type="text" class="form-control">-->
+                <!--<div class="input-group-addon">-->
+                <!--<span class="glyphicon glyphicon-th"></span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
-                <div class='input-group date'>
-                    <input ng-model="data.birthday" type='text' class="form-control" placeholder="תאריך לידה"
-                           id='datetimepicker1'/>
-                </div>
+                <!--<div class='input-group'>-->
+                <!--<input ng-model="data.birthday" type='text' class="form-control" placeholder="תאריך לידה"-->
+                <!--id='datetimepicker1'/>-->
+                <!--</div>-->
 
                 <br/>
 
