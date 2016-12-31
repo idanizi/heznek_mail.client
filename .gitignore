@@ -1,3 +1,8 @@
 /.idea/
 /bower_components/
 /node_modules/
+/app.js___jb_old___
+/app.js___jb_tmp___
+/index.html___jb_old___
+/index.html___jb_tmp___
+/npm-debug.log
